@@ -117,8 +117,6 @@ jobs:
       matrix:
         build_type: [Debug, Release]
     runs-on: windows-2022
-    env:
-      CXX: ${{ matrix.compiler }}
     steps:
       - uses: actions/checkout@v3
       - name: Cache dependencies
