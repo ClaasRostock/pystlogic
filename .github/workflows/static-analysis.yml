@@ -43,7 +43,7 @@ jobs:
         with:
           version: 10
       - name: Install install static analyzers
-        run: sudo apt install clang-tidy-10 iwyu
+        run: sudo apt install clang-tidy iwyu
       - name: CMake configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=OFF -DENABLE_TESTING=OFF -DENABLE_STATIC_ANALYSIS=ON
       - name: CMake build
