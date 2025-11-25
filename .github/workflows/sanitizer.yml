@@ -52,7 +52,7 @@ jobs:
     - run: cmake -E make_directory build
 
     - working-directory: build/
-      run: cmake $GITHUB_WORKSPACE -DBUILD_EXAMPLES=OFF -DCMAKE_CXX_FLAGS="-fsanitize=${{ matrix.sanitizer }} -DCMAKE_INTERPROCEDURAL_OPTIMIZATION=Off"
+      run: cmake $GITHUB_WORKSPACE -DBUILD_EXAMPLES=OFF -DCMAKE_CXX_FLAGS="-fsanitize=${{ matrix.sanitizer }} fno-lto"
 
     - working-directory: build/
       run: cmake --build .

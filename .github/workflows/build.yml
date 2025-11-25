@@ -145,7 +145,7 @@ jobs:
           cmake-version: '3.16.x'
       - run: cmake -E make_directory build
       - working-directory: build/
-        run: cmake $GITHUB_WORKSPACE
+        run: cmake $env:GITHUB_WORKSPACE
       - working-directory: build/
         run: cmake --build . --config ${{ matrix.build_type }}
       - working-directory: build/
