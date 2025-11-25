@@ -4,13 +4,14 @@ on: [push, pull_request]
 
 env:
   SCCACHE_DIR: ${{ github.workspace }}/.cache/sccache
+  CLANG_VERSION: 10
 
 jobs:
   static-analysis:
     runs-on: ubuntu-latest
     env:
-      CC: clang-10
-      CXX: clang++-10
+      CC: clang-${{ env.CLANG_VERSION }}
+      CXX: clang++-${{ env.CLANG_VERSION }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -38,10 +39,12 @@ jobs:
         run: |
           curl -SL https://github.com/mozilla/sccache/releases/download/v0.2.15/sccache-v0.2.15-x86_64-unknown-linux-musl.tar.gz | tar xvz --strip-components=1 --wildcards "*/sccache"
           chmod +x sccache
-      - name: Install build tools
-        run: sudo apt update && sudo apt install -y $CXX $CC
+      - name: Install LLVM and Clang
+        uses: KyleMayes/install-llvm-action@v2
+        with:
+          version: ${{ env.CLANG_VERSION }}
       - name: Install install static analyzers
-        run: sudo apt install clang-tidy iwyu
+        run: sudo apt install clang-tidy-${{ env.CLANG_VERSION }} iwyu
       - name: CMake configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=OFF -DENABLE_TESTING=OFF -DENABLE_STATIC_ANALYSIS=ON
       - name: CMake build
