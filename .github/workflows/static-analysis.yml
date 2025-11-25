@@ -4,14 +4,13 @@ on: [push, pull_request]
 
 env:
   SCCACHE_DIR: ${{ github.workspace }}/.cache/sccache
-  CLANG_VERSION: 10
 
 jobs:
   static-analysis:
     runs-on: ubuntu-latest
     env:
-      CC: clang-${{ env.CLANG_VERSION }}
-      CXX: clang++-${{ env.CLANG_VERSION }}
+      CC: clang-10
+      CXX: clang++-10
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
@@ -42,9 +41,9 @@ jobs:
       - name: Install LLVM and Clang
         uses: KyleMayes/install-llvm-action@v2
         with:
-          version: ${{ env.CLANG_VERSION }}
+          version: 10
       - name: Install install static analyzers
-        run: sudo apt install clang-tidy-${{ env.CLANG_VERSION }} iwyu
+        run: sudo apt install clang-tidy-10 iwyu
       - name: CMake configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=OFF -DENABLE_TESTING=OFF -DENABLE_STATIC_ANALYSIS=ON
       - name: CMake build
