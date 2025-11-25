@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ['14', '15']
+        xcode: ['16', '26']
         build_type: [Debug, Release]
     runs-on: macos-latest
     steps:
@@ -65,7 +65,7 @@ jobs:
           - clang++-10
           - clang++-11
         build_type: [ Debug, Release ]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     env:
       CXX: ${{ matrix.compiler }}
     steps:
