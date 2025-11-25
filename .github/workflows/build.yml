@@ -184,7 +184,7 @@ jobs:
         if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v') || github.event.inputs.publish_artifacts == 'true'
         name: Upload artifact (wheels)
         with:
-          name: wheels
+          name: wheels-${{ matrix.platform }}-py${{ matrix.python-version }}
           path: ./dist/*.whl
 
   publish:
@@ -193,9 +193,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: pypi
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
-          name: wheels
+          pattern: wheels-*
+          merge-multiple: true
           path: ./dist/
       - uses: pypa/gh-action-pypi-publish@v1.5.2
         with:
