@@ -40,7 +40,7 @@ jobs:
           chmod +x sccache
 
       - name: Install install static analyzers
-        run: sudo apt install clang-tidy iwyu libtinfo5
+        run: sudo apt install clang-tidy iwyu
       - name: CMake configure
         run: cmake -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=OFF -DENABLE_TESTING=OFF -DENABLE_STATIC_ANALYSIS=ON
       - name: CMake build
