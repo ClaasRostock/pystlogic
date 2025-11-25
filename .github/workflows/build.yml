@@ -160,9 +160,6 @@ jobs:
       matrix:
         platform: [ 'windows-2019', 'ubuntu-latest', 'macos-latest' ]
         python-version: [ '311', '312', '313', '314' ]
-        exclude:
-          - platform: macos-latest
-            python-version: 312
     runs-on: ${{ matrix.platform }}
     env:
       CIBW_BUILD: >
