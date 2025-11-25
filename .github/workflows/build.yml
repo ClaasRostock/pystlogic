@@ -159,7 +159,6 @@ jobs:
       matrix:
         platform: [ 'windows-2019', 'ubuntu-latest', 'macos-latest' ]
         python-version: [ '311', '312', '313', '314' ]
-        include:
         exclude:
           - platform: macos-latest
             python-version: 312
