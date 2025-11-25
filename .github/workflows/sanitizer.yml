@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        cxx: [g++, clang++]
+        cxx: [g++, clang++-18]
         sanitizer: [address, undefined]
 
     runs-on: ubuntu-latest
