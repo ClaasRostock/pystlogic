@@ -9,8 +9,8 @@ jobs:
   static-analysis:
     runs-on: ubuntu-latest
     env:
-      CC: clang-10
-      CXX: clang++-10
+      CC: clang
+      CXX: clang++
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
